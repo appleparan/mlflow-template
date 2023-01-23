@@ -1,0 +1,16 @@
+defaults:
+  - _self_
+
+name: train
+random_seed: 5151
+datetime_format: "%Y-%m-%dT%H:%M:%S"
+datetime_format_file: "%Y%m%d_%H%M%S"
+
+mlflow:
+  experiment_name: experiment
+  run_name: run
+  resume: False
+
+hydra:
+  run:
+    dir: outputs/${now:%Y-%m-%d-%H-%M-%S}
