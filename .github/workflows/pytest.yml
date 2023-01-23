@@ -1,0 +1,81 @@
+# https://github.com/snok/install-poetry#testing
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  linting:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.9, '3.10', '3.11']
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      #----------------------------------------------
+      #       check-out repo and set-up python
+      #----------------------------------------------
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade setuptools pip wheel
+          # Use the latest published version for myself :)
+          python -m pip install -e .[dev]
+      #----------------------------------------------
+      #        load pip cache if cache exists
+      #----------------------------------------------
+      - uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip
+          restore-keys: ${{ runner.os }}-pip
+      #----------------------------------------------
+      #          install and run linters
+      #----------------------------------------------
+      - run: python -m pip install black flake8 isort
+      - run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=50 --max-line-length=127 --statistics
+          black . --check
+          isort .
+  test:
+    needs: linting
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.9, '3.10', '3.11']
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      #----------------------------------------------
+      #       check-out repo and set-up python
+      #----------------------------------------------
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Set up python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      #----------------------------------------------
+      # install dependencies if cache does not exist
+      #----------------------------------------------
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: |
+          python -m pip install --upgrade setuptools pip wheel
+          # Use the latest published version for myself :)
+          python -m pip install -e .[dev]
+      #----------------------------------------------
+      # install your root project, if required
+      #----------------------------------------------
+      - name: Run tests
+        run: |
+          coverage run -m pytest tests/
+          coverage report
