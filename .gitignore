@@ -142,3 +142,6 @@ configs/
 
 # data directory
 /data
+
+# mlflow
+mlruns/
