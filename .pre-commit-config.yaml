@@ -16,7 +16,7 @@ repos:
     hooks:
       - id: pyupgrade
         name: pyupgrade
-        entry: poetry run pyupgrade --py39-plus
+        entry: pyupgrade --py39-plus
         types: [python]
         language: system
 
@@ -24,7 +24,7 @@ repos:
     hooks:
       - id: isort
         name: isort
-        entry: poetry run isort --settings-path pyproject.toml
+        entry: isort --settings-path pyproject.toml
         exclude: ^{{ cookiecutter.project_name }}/
         types: [python]
         language: system
@@ -33,7 +33,7 @@ repos:
     hooks:
       - id: black
         name: black
-        entry: poetry run black --config pyproject.toml
+        entry: black --config pyproject.toml
         types: [python]
         language: system
 
@@ -41,31 +41,32 @@ repos:
     hooks:
       - id: pylint
         name: pylint
-        entry: poetry run pylint
+        entry: pylint
         types: [python]
-        args: [--disable=all, --enable=unused-import, --load-plugins, pylint_pytest]
+        args:
+          [--disable=all, --enable=unused-import, --load-plugins, pylint_pytest]
         language: system
+
+  # - repo: local
+  #   hooks:
+  #     - id: mypy
+  #       name: mypy
+  #       entry: python -m  mypy
+  #       exclude: |
+  #         (?x)(
+  #             ^tests/|
+  #             ^scripts.py
+  #         )
+  #       types: [python]
+  #       args: [--strict]
+  #       language: system
 
   - repo: local
     hooks:
-      - id: mypy
-        name: mypy
-        entry: poetry run mypy
-        exclude: |
-          (?x)(
-              ^tests/|
-              ^scripts.py
-          )
+      - id: darglint
+        name: darglint
+        entry: darglint
+        exclude: >
+          ^tests/*
         types: [python]
-        args: [--strict]
         language: system
-
-  - repo: local
-    hooks:
-    - id: darglint
-      name: darglint
-      entry: poetry run darglint
-      exclude: >
-        ^tests/*
-      types: [python]
-      language: system
