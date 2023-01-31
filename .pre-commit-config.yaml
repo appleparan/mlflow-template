@@ -66,12 +66,5 @@ repos:
       - id: pydocstyle
         name: pydocstyle
         entry: pydocstyle
-        args:
-          - |-
-            --select=
-            D100,
-            D2
-        exclude: >
-          ^tests/*
         types: [python]
         language: system

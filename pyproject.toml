@@ -172,3 +172,7 @@ branch = true
 [tool.coverage.report]
 fail_under = 50
 show_missing = true
+
+[tool.pydocstyle]
+convention = "google"
+match = '((?!_test).)*\.py'
