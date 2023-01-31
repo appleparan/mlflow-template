@@ -63,9 +63,14 @@ repos:
 
   - repo: local
     hooks:
-      - id: darglint
-        name: darglint
-        entry: darglint
+      - id: pydocstyle
+        name: pydocstyle
+        entry: pydocstyle
+        args:
+          - |-
+            --select=
+            D100,
+            D2
         exclude: >
           ^tests/*
         types: [python]
