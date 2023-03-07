@@ -1,7 +1,7 @@
 import subprocess
 
 
-def test():
+def test() -> None:
     """
     Run all unittests. Equivalent to:
     `poetry run python -u -m unittest discover`
@@ -9,7 +9,7 @@ def test():
     subprocess.Popen(["python", "-m", "pytest", "--import-mode=importlib"])
 
 
-def lint():
+def lint() -> None:
     """
     Run all unittests. Equivalent to:
     `poetry run python -u -m unittest discover`

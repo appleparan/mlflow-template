@@ -1,7 +1,13 @@
 default_language_version:
-  python: python3.9
+  python: python3.10
 
 default_stages: [commit, push]
+
+exclude: |
+  'tests/.*' |
+  'scripts\.py' |
+  'configs/.*' |
+  'configs_sample/.*' |
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -16,7 +22,7 @@ repos:
     hooks:
       - id: pyupgrade
         name: pyupgrade
-        entry: pyupgrade --py39-plus
+        entry: pyupgrade --py310-plus
         types: [python]
         language: system
 
@@ -25,7 +31,6 @@ repos:
       - id: isort
         name: isort
         entry: isort --settings-path pyproject.toml
-        exclude: ^{{ cookiecutter.project_name }}/
         types: [python]
         language: system
 
@@ -47,19 +52,14 @@ repos:
           [--disable=all, --enable=unused-import, --load-plugins, pylint_pytest]
         language: system
 
-  # - repo: local
-  #   hooks:
-  #     - id: mypy
-  #       name: mypy
-  #       entry: python -m  mypy
-  #       exclude: |
-  #         (?x)(
-  #             ^tests/|
-  #             ^scripts.py
-  #         )
-  #       types: [python]
-  #       args: [--strict]
-  #       language: system
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        entry: python -m mypy
+        types: [python]
+        args: [--strict]
+        language: system
 
   - repo: local
     hooks:
@@ -68,3 +68,4 @@ repos:
         entry: pydocstyle
         types: [python]
         language: system
+        exclude: ^setup\.py|^scripts\.py|__init__\.py|tests/.*/_test_(.)*\.py

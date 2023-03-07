@@ -1,4 +1,4 @@
-from template import __version__
+from mlops_template import __version__
 
 
 def test_version():

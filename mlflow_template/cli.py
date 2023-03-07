@@ -1,6 +1,6 @@
+"""CLI for mlops_template."""
 import datetime
 import logging
-import os
 from pathlib import Path
 
 import hydra
@@ -11,8 +11,8 @@ from omegaconf import DictConfig, ListConfig, OmegaConf
 logger = logging.getLogger("mlflow")
 
 
-def _explore_recursive(parent_name: str, element: dict):
-    """log params from a dict or a list
+def _explore_recursive(parent_name: str, element: dict) -> None:
+    """Log params from a dict or a list.
 
     Args:
         parent_name (str): parent name
@@ -21,15 +21,15 @@ def _explore_recursive(parent_name: str, element: dict):
     if isinstance(element, DictConfig):
         for k, v in element.items():
             if isinstance(v, DictConfig) or isinstance(v, ListConfig):
-                _explore_recursive(f"{parent_name}.{k}", v)
+                _explore_recursive(f"{parent_name}.{k}", v) # type: ignore
             else:
-                mlflow.log_param(f"{parent_name}.{k}", v)
+                mlflow.log_param(f"{parent_name}.{k}", v) # type: ignore
     elif isinstance(element, ListConfig):
         for i, v in enumerate(element):
             mlflow.log_param(f"{parent_name}.{i}", v)
 
 
-def log_params_from_omegaconf_dict(params: dict):
+def log_params_from_omegaconf_dict(params: dict) -> None:
     """log params from a dict
 
     Args:
@@ -39,9 +39,9 @@ def log_params_from_omegaconf_dict(params: dict):
         if isinstance(element, DictConfig):
             for k, v in element.items():
                 if isinstance(v, DictConfig) or isinstance(v, ListConfig):
-                    _explore_recursive(f"{param_name}.{k}", v)
+                    _explore_recursive(f"{param_name}.{k}", v) # type: ignore
                 else:
-                    mlflow.log_param(f"{param_name}.{k}", v)
+                    mlflow.log_param(f"{param_name}.{k}", v) # type: ignore
         elif isinstance(element, ListConfig):
             for i, v in enumerate(element):
                 mlflow.log_param(f"{param_name}.{i}", v)
@@ -51,15 +51,15 @@ def search_run(
     client: mlflow.tracking.MlflowClient,
     experiment_id: str,
     is_resume: bool = False,
-    run_name: str = None,
+    run_name: str = "default_run_name",
 ) -> mlflow.entities.Run:
-    """Search for a run with the same name and return it if it exists
+    """Search for a run with the same name and return it if it exists.
 
     Args:
         client (mlflow.tracking.MlflowClient): mlflow client
         experiment_id (str): experiment id
         is_resume (bool): Whether to resume the run. Defaults to False.
-        run_name (str): run name. Defaults to None.
+        run_name (str): run name. Defaults to "default_run_name".
 
     Raises:
         ValueError: if there are more than one runs with the same name
@@ -86,7 +86,7 @@ def search_run(
 
 @hydra.main(config_path="../configs.sample", config_name="config.yaml", version_base="1.2")
 def main(cfg: DictConfig) -> None:
-    """Run the main function
+    """Run the main function.
 
     Args:
         cfg (DictConfig): Config
@@ -95,11 +95,9 @@ def main(cfg: DictConfig) -> None:
         ValueError: if there are more than one runs with the same name
     """
     logger.info("Arguments: %s", OmegaConf.to_yaml(cfg))
-    logger.info("Working directory: %s", os.getcwd())
     logger.info("Current directory: %s", Path.cwd())
     logger.info("Current time: %s", datetime.datetime.now())
     logger.info("Hydra Output Directory: %s", hydra.utils.get_original_cwd())
-    logger.info("Hydra run dir: %s", hydra.utils.get_run_dir())
 
     if cfg.name.lower() == "model_train":
         tracking_dir = Path(hydra.utils.get_original_cwd()) / "mlruns"

@@ -1,4 +1,4 @@
-""""Top-level pacakge for the template module."""
+""""Top-level pacakge for the mlflow_template module."""
 
 __author__ = """Jongsu Kim"""
 __email__ = "jongsukim8@gmail.com"

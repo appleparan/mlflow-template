@@ -2,13 +2,15 @@ defaults:
   - _self_
 
 name: train
-random_seed: 5151
+random_seed: 1234
 datetime_format: "%Y-%m-%dT%H:%M:%S"
 datetime_format_file: "%Y%m%d_%H%M%S"
 
 mlflow:
   experiment_name: experiment
   run_name: run
+  tags:
+    version: "v1"
   resume: False
 
 hydra:

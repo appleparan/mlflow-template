@@ -46,7 +46,7 @@ greenlet==2.0.1
 gunicorn==20.1.0
     # via mlflow
 hydra-core==1.3.1
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 idna==3.4
     # via requests
 importlib-metadata==5.2.0
@@ -75,7 +75,7 @@ markupsafe==2.1.2
 matplotlib==3.6.3
     # via mlflow
 mlflow==2.1.1
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 numba==0.56.4
     # via shap
 numpy==1.23.5
@@ -83,6 +83,7 @@ numpy==1.23.5
     #   contourpy
     #   matplotlib
     #   mlflow
+    #   mlflow-template (pyproject.toml)
     #   numba
     #   pandas
     #   pyarrow
@@ -94,7 +95,7 @@ oauthlib==3.2.2
 omegaconf==2.3.0
     # via
     #   hydra-core
-    #   template (pyproject.toml)
+    #   mlflow-template (pyproject.toml)
 packaging==21.3
     # via
     #   docker

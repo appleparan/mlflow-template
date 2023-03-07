@@ -19,9 +19,9 @@ attrs==22.2.0
 babel==2.11.0
     # via sphinx
 bandit==1.7.4
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 black==22.12.0
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 certifi==2022.12.7
     # via requests
 cfgv==3.3.1
@@ -44,14 +44,12 @@ contourpy==1.0.7
 coverage[toml]==7.0.5
     # via
     #   coverage-badge
+    #   mlflow-template (pyproject.toml)
     #   pytest-cov
-    #   template (pyproject.toml)
 coverage-badge==1.1.0
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 cycler==0.11.0
     # via matplotlib
-darglint==1.8.1
-    # via template (pyproject.toml)
 databricks-cli==0.17.4
     # via mlflow
 dill==0.3.6
@@ -73,9 +71,9 @@ filelock==3.9.0
 flake8==6.0.0
     # via
     #   flake8-docstrings
-    #   template (pyproject.toml)
+    #   mlflow-template (pyproject.toml)
 flake8-docstrings==1.6.0
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 flask==2.2.2
     # via mlflow
 fonttools==4.38.0
@@ -91,7 +89,7 @@ greenlet==2.0.1
 gunicorn==20.1.0
     # via mlflow
 hydra-core==1.3.1
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 identify==2.5.13
     # via pre-commit
 idna==3.4
@@ -104,8 +102,8 @@ iniconfig==2.0.0
     # via pytest
 isort==5.11.4
     # via
+    #   mlflow-template (pyproject.toml)
     #   pylint
-    #   template (pyproject.toml)
 itsdangerous==2.1.2
     # via flask
 jinja2==3.1.2
@@ -137,14 +135,14 @@ mccabe==0.7.0
     #   flake8
     #   pylint
 mlflow==2.1.1
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 mypy==0.991
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 mypy-extensions==0.4.3
     # via
     #   black
+    #   mlflow-template (pyproject.toml)
     #   mypy
-    #   template (pyproject.toml)
 nodeenv==1.7.0
     # via pre-commit
 numba==0.56.4
@@ -154,6 +152,7 @@ numpy==1.23.5
     #   contourpy
     #   matplotlib
     #   mlflow
+    #   mlflow-template (pyproject.toml)
     #   numba
     #   pandas
     #   pyarrow
@@ -165,7 +164,7 @@ oauthlib==3.2.2
 omegaconf==2.3.0
     # via
     #   hydra-core
-    #   template (pyproject.toml)
+    #   mlflow-template (pyproject.toml)
 packaging==21.3
     # via
     #   docker
@@ -195,7 +194,7 @@ platformdirs==2.6.2
 pluggy==1.0.0
     # via pytest
 pre-commit==2.21.0
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 protobuf==4.21.12
     # via mlflow
 py==1.11.0
@@ -207,7 +206,7 @@ pycodestyle==2.10.0
 pydocstyle==6.3.0
     # via
     #   flake8-docstrings
-    #   template (pyproject.toml)
+    #   mlflow-template (pyproject.toml)
 pyflakes==3.0.1
     # via flake8
 pygments==2.14.0
@@ -215,21 +214,21 @@ pygments==2.14.0
 pyjwt==2.6.0
     # via databricks-cli
 pylint==2.15.10
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 pyparsing==3.0.9
     # via
     #   matplotlib
     #   packaging
 pytest==7.2.1
     # via
+    #   mlflow-template (pyproject.toml)
     #   pytest-cov
     #   pytest-html
     #   pytest-metadata
-    #   template (pyproject.toml)
 pytest-cov==4.0.0
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 pytest-html==3.2.0
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 pytest-metadata==2.0.4
     # via pytest-html
 python-dateutil==2.8.2
@@ -242,7 +241,7 @@ pytz==2022.7.1
     #   mlflow
     #   pandas
 pyupgrade==3.3.1
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 pyyaml==6.0
     # via
     #   bandit
@@ -263,7 +262,7 @@ ruamel-yaml==0.17.21
 ruamel-yaml-clib==0.2.7
     # via ruamel-yaml
 safety==2.3.5
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 scikit-learn==1.2.0
     # via
     #   mlflow
@@ -289,7 +288,7 @@ snowballstemmer==2.2.0
     #   pydocstyle
     #   sphinx
 sphinx==6.1.3
-    # via template (pyproject.toml)
+    # via mlflow-template (pyproject.toml)
 sphinxcontrib-applehelp==1.0.3
     # via sphinx
 sphinxcontrib-devhelp==1.0.2
